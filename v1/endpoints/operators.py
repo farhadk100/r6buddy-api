@@ -15,7 +15,12 @@ async def get_all_operators():
     return db["operators"].fetch()
 
 
-@router.post("/")
+@router.get("/{name}")
+async def get_single_operator(name: str):
+    return db["operators"].get(name)
+
+
+@router.put("/")
 async def create_operator(operator: Operator):
     return db["operators"].put(jsonable_encoder(operator), key=operator.name)
 
