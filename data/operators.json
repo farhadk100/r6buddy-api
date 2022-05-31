@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Sledge",
+    "speed": 2,
+    "armor": 2,
+    "icon_url": "https://staticctf.akamaized.net/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/4lgK1mOTVAoBhoj5qjYuyd/83c83d56e977f96ac0e9621c0d1c07d2/Y0R6_BADGE_Sledge_L.png",
+    "bio": {
+      "real_name": "Seamus Cowden",
+      "date_of_birth": "1987-04-02",
+      "place_of_birth": "John O’Groats, Scotland",
+      "bio": "Born in the far north of Scotland, Cowden’s military father and nurse mother moved to Inverness with him and his three siblings when he was five. His athleticism elevated him to the position of Captain of the 1998 Scotland Under-20s Rugby Union Team. Following a long family tradition of military service, Cowden joined the 3rd UK Mechanised Division of the British Army. His drive and physique suit the division’s historical nickname of “Iron Sides.” Cowden’s first assignment was in the Armoured Division where he studied engineering and specialized in upgrading the infantry combat vehicles. From there, he developed various breaching tactics. He was then recruited into the SAS, where he holds multiple records in speed and strength. An expert in mechanical, ballistic, explosive and thermal breaching strategies, Cowden is the operator to choose for quick and relatively silent destruction."
+    },
+    "loadout": {
+      "primary_weapons": [
+        "L85A2",
+        "M590A1"
+      ],
+      "secondary_weapons": [
+        "P226 Mk 25",
+        "SMG-11"
+      ],
+      "gadgets": [
+        "Frag Grenade",
+        "Stun Grenade"
+      ]
+    }
+  }
+]
