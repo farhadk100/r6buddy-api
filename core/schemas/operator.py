@@ -1,21 +1,11 @@
 import datetime
-from pydantic import BaseModel
-
-
-class Weapon(BaseModel):
-    name: str
-    image_url: str
-
-
-class Gadget(BaseModel):
-    name: str
-    image_url: str
+from pydantic import BaseModel, Field
 
 
 class OperatorLoadout(BaseModel):
-    primary_weapons: set[str]
-    secondary_weapons: set[str]
-    gadgets: set[str]
+    primary_weapons: set[str] = Field(description="set of names (keys) of primary weapons")
+    secondary_weapons: set[str] = Field(description="set of names (keys) of secondary weapons")
+    gadgets: set[str] = Field(description="set of names of gadgets")
 
 
 class OperatorBio(BaseModel):
@@ -29,6 +19,6 @@ class Operator(BaseModel):
     name: str
     speed: int
     armor: int
-    icon_url: str
+    icon_url: str = Field(description="url to an image of operators' icon")
     bio: OperatorBio
     loadout: OperatorLoadout
