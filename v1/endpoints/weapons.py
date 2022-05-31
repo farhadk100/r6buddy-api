@@ -16,12 +16,12 @@ async def get_all_weapons():
 
 
 @router.get("/{name}")
-async def get_single_gadget(name: str):
+async def get_single_weapon(name: str):
     return db["weapons"].get(name)
 
 
 @router.put("/")
-async def create_gadget(weapon: Weapon):
+async def create_weapon(weapon: Weapon):
     return db["weapons"].put(jsonable_encoder(weapon), key=weapon.name)
 
 
