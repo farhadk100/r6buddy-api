@@ -1,4 +1,5 @@
 deta
 python-dotenv
 fastapi
+unidecode
 uvicorn

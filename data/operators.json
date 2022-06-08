@@ -3,7 +3,9 @@
     "name": "Sledge",
     "speed": 2,
     "armor": 2,
+    "type": "attacker",
     "icon_url": "https://staticctf.akamaized.net/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/4lgK1mOTVAoBhoj5qjYuyd/83c83d56e977f96ac0e9621c0d1c07d2/Y0R6_BADGE_Sledge_L.png",
+    "portrait_url": "https://staticctf.akamaized.net/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/2p5MyJkqbsfL8kCRNJVhcz/90aa196a11f2ea49ea107aab69789053/R6-operator-sledge.png",
     "bio": {
       "real_name": "Seamus Cowden",
       "date_of_birth": "1987-04-02",
