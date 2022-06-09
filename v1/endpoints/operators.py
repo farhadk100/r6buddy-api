@@ -1,9 +1,11 @@
+from typing import Union
+
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 
 from core.models.database import db
 from core.schemas.gadget import Gadget
-from core.schemas.operator import OperatorOut, OperatorLoadoutOut, OperatorIn
+from core.schemas.operator import OperatorOut, OperatorLoadoutOut, OperatorIn, OperatorType
 from core.schemas.weapon import Weapon
 from core.utils import create_key
 
@@ -28,11 +30,12 @@ def get_gadgets() -> dict[str, Gadget]:
 
 
 @router.get("/", response_model=list[OperatorOut])
-async def get_all_operators():
+async def get_all_operators(type: Union[OperatorType, None] = None):
     # get all operators
-    db_operators = db["operators"].fetch()
-    if db_operators.count == 0:
-        return []
+    if type:
+        db_operators = db["operators"].fetch(query={"type": type})
+    else:
+        db_operators = db["operators"].fetch()
 
     # get all weapons and gadgets
     weapons = get_weapons()
