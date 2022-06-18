@@ -88,3 +88,8 @@ something like this:
 
 You can now visit your API at the address provided in the `endpoint` field.
 
+To update the API after you have made local changes:
+
+```bash
+deta deploy
+```
