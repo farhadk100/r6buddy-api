@@ -1,4 +1,3 @@
-import datetime
 from enum import Enum
 
 from pydantic import BaseModel, Field, HttpUrl
@@ -8,13 +7,13 @@ from core.schemas.weapon import WeaponOut
 
 
 class OperatorType(str, Enum):
-    attacker = "attacker"
-    defender = "defender"
+    attacker = "Attacker"
+    defender = "Defender"
 
 
 class OperatorBio(BaseModel):
     real_name: str
-    date_of_birth: datetime.date
+    date_of_birth: str
     place_of_birth: str
     bio: str
 
@@ -22,12 +21,18 @@ class OperatorBio(BaseModel):
 class OperatorBase(BaseModel):
     """ Base class for all operator schemas """
     name: str
-    type: OperatorType = Field(description="'attacker' or 'defender'")
+    type: OperatorType = Field(description="'Attacker' or 'Defender'")
     speed: int
     armor: int
     icon_url: HttpUrl = Field(description="url to an image of operators' icon")
     portrait_url: HttpUrl = Field(description="url to an image of operators' portrait")
     bio: OperatorBio
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __hash__(self):
+        return hash(self.name)
 
 
 class OperatorLoadoutIn(BaseModel):

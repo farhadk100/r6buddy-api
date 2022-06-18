@@ -38,16 +38,16 @@ async def get_all_operators(type: Union[OperatorType, None] = None):
         db_operators = db["operators"].fetch()
 
     # get all weapons and gadgets
-    weapons = get_weapons()
-    gadgets = get_gadgets()
+    weapons_dict = get_weapons()
+    gadgets_dict = get_gadgets()
 
     try:
         operators = []
         for db_op in db_operators.items:
             # for each operator, create their loadout
-            primary_weapons = [weapons[create_key(w_id)] for w_id in db_op["loadout"]["primary_weapons"]]
-            secondary_weapons = [weapons[create_key(w_id)] for w_id in db_op["loadout"]["secondary_weapons"]]
-            gadgets = [gadgets[create_key(g_id)] for g_id in db_op["loadout"]["gadgets"]]
+            primary_weapons = [weapons_dict[create_key(w_id)] for w_id in db_op["loadout"]["primary_weapons"]]
+            secondary_weapons = [weapons_dict[create_key(w_id)] for w_id in db_op["loadout"]["secondary_weapons"]]
+            gadgets = [gadgets_dict[create_key(g_id)] for g_id in db_op["loadout"]["gadgets"]]
 
             # create a new OperatorOut object
             operator = OperatorOut(
