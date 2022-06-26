@@ -1,11 +1,14 @@
 from enum import Enum
 
+import strawberry
 from pydantic import BaseModel, Field, HttpUrl
+from strawberry.scalars import ID
 
-from core.schemas.gadget import GadgetOut
-from core.schemas.weapon import WeaponOut
+from core.schemas.gadget import GadgetOut, GadgetGQL, GadgetInputGQL
+from core.schemas.weapon import WeaponOut, WeaponGQL, WeaponInputGQL
 
 
+@strawberry.enum()
 class OperatorType(str, Enum):
     attacker = "Attacker"
     defender = "Defender"
@@ -58,3 +61,55 @@ class OperatorOut(OperatorBase):
     """ Schema for an operator that gets returned as output """
     key: str
     loadout: OperatorLoadoutOut
+
+
+@strawberry.type(name="OperatorBio")
+class OperatorBioGQL:
+    """ GraphQL schema for an operator's bio """
+    real_name: str
+    date_of_birth: str
+    place_of_birth: str
+    bio: str
+
+
+@strawberry.type(name="OperatorLoadout")
+class OperatorLoadoutGQL:
+    """ GraphQL schema for an operator's loadout """
+    primary_weapons: list[WeaponGQL]
+    secondary_weapons: list[WeaponGQL]
+    gadgets: list[GadgetGQL]
+
+
+@strawberry.type(name="Operator")
+class OperatorGQL:
+    """ GraphQL schema for an operator """
+    key: ID
+    name: str
+    type: 'OperatorType'
+    speed: int
+    armor: int
+    icon_url: str
+    portrait_url: str
+    bio: 'OperatorBioGQL'
+    loadout: 'OperatorLoadoutGQL'
+
+
+@strawberry.input(name="OperatorLoadoutInput")
+class OperatorLoadoutInputGQL:
+    """ GraphQL schema for an operator's loadout that gets provided as input """
+    primary_weapons: list[WeaponInputGQL]
+    secondary_weapons: list[WeaponInputGQL]
+    gadgets: list[GadgetInputGQL]
+
+
+@strawberry.type(name="Operator")
+class OperatorInputGQL:
+    """ GraphQL schema for an operator """
+    name: str
+    type: 'OperatorType'
+    speed: int
+    armor: int
+    icon_url: str
+    portrait_url: str
+    bio: 'OperatorBioGQL'
+    loadout: 'OperatorLoadoutInputGQL'

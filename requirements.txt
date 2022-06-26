@@ -1,5 +1,7 @@
 deta
 python-dotenv
 fastapi
+strawberry-graphql[fastapi]
 unidecode
 uvicorn
+uvicorn[standard]
