@@ -30,9 +30,18 @@ def get_gadgets() -> dict[str, Gadget]:
 
 
 @router.get("/", response_model=list[OperatorOut])
-async def get_all_operators(type: Union[OperatorType, None] = None):
-    # get all operators
-    if type:
+async def get_all_operators(type: Union[OperatorType, None] = None, weapon_name: Union[str, None] = None):
+    if type and weapon_name:
+        db_operators = db["operators"].fetch(query=[
+            {"type": type, "loadout.primary_weapons?contains": create_key(weapon_name)},
+            {"type": type, "loadout.secondary_weapons?contains": create_key(weapon_name)}
+        ])
+    elif not type and weapon_name:
+        db_operators = db["operators"].fetch(query=[
+            {"loadout.primary_weapons?contains": create_key(weapon_name)},
+            {"loadout.secondary_weapons?contains": create_key(weapon_name)}
+        ])
+    elif type and not weapon_name:
         db_operators = db["operators"].fetch(query={"type": type})
     else:
         db_operators = db["operators"].fetch()
@@ -63,7 +72,8 @@ async def get_all_operators(type: Union[OperatorType, None] = None):
                     primary_weapons=primary_weapons,
                     secondary_weapons=secondary_weapons,
                     gadgets=gadgets
-                )
+                ),
+                unique_ability=db_op["unique_ability"],
             )
             operators.append(operator)
         return operators
@@ -101,7 +111,8 @@ async def get_single_operator(name: str):
                 primary_weapons=primary_weapons,
                 secondary_weapons=secondary_weapons,
                 gadgets=gadgets
-            )
+            ),
+            unique_ability=db_op["unique_ability"],
         )
         return operator
     except KeyError:
@@ -138,7 +149,8 @@ async def create_operator(operator: OperatorIn):
             primary_weapons=[weapons[create_key(w_id)] for w_id in operator_db["loadout"]["primary_weapons"]],
             secondary_weapons=[weapons[create_key(w_id)] for w_id in operator_db["loadout"]["secondary_weapons"]],
             gadgets=[gadgets[create_key(g_id)] for g_id in operator_db["loadout"]["gadgets"]]
-        )
+        ),
+        unique_ability=operator_db["unique_ability"],
     )
 
 

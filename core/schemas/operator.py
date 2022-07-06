@@ -18,7 +18,14 @@ class OperatorBio(BaseModel):
     real_name: str
     date_of_birth: str
     place_of_birth: str
-    bio: str
+    biography: str
+    psychological_report: str
+
+
+class OperatorAbility(BaseModel):
+    name: str
+    image_url: HttpUrl
+    playstyle: str
 
 
 class OperatorBase(BaseModel):
@@ -30,6 +37,7 @@ class OperatorBase(BaseModel):
     icon_url: HttpUrl = Field(description="url to an image of operators' icon")
     portrait_url: HttpUrl = Field(description="url to an image of operators' portrait")
     bio: OperatorBio
+    unique_ability: OperatorAbility
 
     def __eq__(self, other):
         return self.name == other.name

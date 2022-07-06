@@ -90,9 +90,9 @@
     "type": "Handgun"
   },
   {
-    "name": "9x19VSN",
+    "name": "9X19SVN",
     "image_url": "https://staticctf.akamaized.net/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/akx58K4vXn1v2Q4C3sgrB/03425922f23cc8887b6e73c4d06ad387/9X19SVN.png",
-    "type": "Submachine Gun"
+    "type": null
   },
   {
     "name": "D-50",
@@ -398,6 +398,11 @@
     "name": "C75 Auto",
     "image_url": "https://staticctf.akamaized.net/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/3wUuefwPjU705mZkTdJ9UH/8ccb11884cfa34c176ac5500af139177/C75_Auto.png",
     "type": "Machine Pistol"
+  },
+  {
+    "name": "9x19VSN",
+    "image_url": "https://staticctf.akamaized.net/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/42gH96xTTYaTZsfXI3c0wL/a7edbf11af97091ee884b68e59fe6a4f/9x19VSN.png",
+    "type": "Submachine Gun"
   },
   {
     "name": "SIX12 SD",
